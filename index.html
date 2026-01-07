@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teh Tetangga by amnesfubbia brand - Segarnya gak jauh, cuma sebelah rumah. 100% Gula Asli.">
+    <title>Teh Tetangga - Segarnya Gak Jauh</title>
+    
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --tea-green: #4ade80;
+            --tea-dark: #166534;
+            --accent-yellow: #facc15;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth; 
+            background-color: #fcfdfa; 
+        }
+        h1, h2, h3, .brand-font { 
+            font-family: 'Fredoka', sans-serif; 
+        }
+        .tea-gradient { 
+            background: linear-gradient(135deg, var(--tea-green), var(--tea-dark)); 
+        }
+        .menu-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 2px solid transparent; 
+        }
+        .menu-card:hover { 
+            transform: translateY(-12px); 
+            border-color: #4ade80; 
+            box-shadow: 0 25px 50px -12px rgba(22, 101, 52, 0.12); 
+        }
+        
+        .floating-wa {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 32px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000; transition: all 0.4s;
+        }
+        .floating-wa:hover { transform: scale(1.1) rotate(15deg); }
+        
+        .badge-premium {
+            background: #fef3c7; color: #92400e; padding: 6px 16px; border-radius: 99px;
+            font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol WA Melayang -->
+    <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20saya%20mau%20order%20dong" target="_blank" class="floating-wa shadow-xl">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-[100] bg-white/90 backdrop-blur-lg border-b border-green-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 tea-gradient rounded-2xl flex items-center justify-center text-white shadow-lg">
+                    <i class="fas fa-leaf text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-bold text-green-900 brand-font leading-none">Teh Tetangga</span>
+                    <span class="text-[9px] text-green-600 font-bold uppercase tracking-[0.2em]">by amnesfubbia brand</span>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 font-semibold text-green-900/70">
+                <a href="#home" class="hover:text-green-600 transition">Beranda</a>
+                <a href="#cerita" class="hover:text-green-600 transition">Cerita Kami</a>
+                <a href="#menu" class="hover:text-green-600 transition">Menu</a>
+                <a href="#about" class="hover:text-green-600 transition">Lokasi</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://instagram.com/amnesfubbia" target="_blank" class="text-gray-400 hover:text-pink-600 transition text-xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/6289514648404" target="_blank" class="bg-green-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-100">
+                    Pesan WA
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-40 pb-20 overflow-hidden px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-3/5 text-center md:text-left">
+                <div class="badge-premium mb-6 shadow-sm">
+                    <i class="fas fa-check-circle text-green-600"></i> 100% Gula Asli - Tanpa Pemanis Buatan
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-green-950 leading-tight mb-6">
+                    Segarnya Gak Jauh, <br><span class="text-green-500 underline decoration-green-200 underline-offset-8">Cuma Sebelah Rumah.</span>
+                </h1>
+                <p class="text-lg text-gray-500 mb-10 max-w-lg leading-relaxed">
+                    Kesegaran teh buah premium dari <b>amnesfubbia brand</b>. Kami percaya minuman enak itu nggak harus mahal dan jauh. Simple, seger, dan pasti suka!
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#menu" class="bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-green-700 transition shadow-xl shadow-green-200">Pilih Menu</a>
+                    <a href="#about" class="bg-white border-2 border-green-100 text-green-900 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-green-50 transition">Cek Lokasi Toko</a>
+                </div>
+            </div>
+            <div class="md:w-2/5 relative">
+                <div class="relative z-10 p-4 bg-white rounded-[3rem] shadow-2xl rotate-3 border-4 border-green-50">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80" alt="Es Teh Segar" class="rounded-[2.5rem] w-full object-cover">
+                </div>
+                <!-- Badge Harga -->
+                <div class="absolute -bottom-6 -left-6 bg-yellow-400 p-6 rounded-full shadow-2xl z-20 flex flex-col items-center justify-center w-32 h-32 border-4 border-white animate-bounce">
+                    <span class="text-[10px] font-bold uppercase text-yellow-900 leading-none mb-1">Hanya</span>
+                    <span class="text-3xl font-black text-yellow-950">6rb</span>
+                    <span class="text-[10px] font-bold uppercase text-yellow-900 mt-1">Saja!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cerita Brand -->
+    <section id="cerita" class="py-24 bg-green-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="w-16 h-1 w-24 bg-yellow-400 mx-auto mb-8 rounded-full"></div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 brand-font">Cerita Di Balik Layar</h2>
+            <p class="text-xl text-green-50 leading-relaxed italic font-light">
+                "Kenapa amnesfubbia memilih jualan teh? Karena teh adalah minuman paling ramah yang bisa dinikmati siapa saja. Kami ingin menghadirkan sesuatu yang <b>simple dan seger</b> untuk menemani hari-hari tetangga kami. Dengan standar kualitas tinggi menggunakan 100% gula asli, kami ingin setiap sesapan membawa kebahagiaan kecil di sebelah rumah Anda."
+            </p>
+            <p class="mt-8 font-bold text-yellow-400">— amnesfubbia brand</p>
+        </div>
+    </section>
+
+    <!-- Cara Pesan -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-center text-3xl font-bold text-green-950 mb-16 brand-font">Order Gampang Banget!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center text-2xl font-bold mb-6 rotate-3 shadow-sm">01</div>
+                    <h4 class="font-bold text-xl mb-2 text-green-900">Pilih Menu</h4>
+                    <p class="text-gray-500 text-sm">Lihat koleksi teh seger di bawah ini.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center text-2xl font-bold mb-6 -rotate-3 shadow-sm">02</div>
+                    <h4 class="font-bold text-xl mb-2 text-green-900">Klik Order WA</h4>
+                    <p class="text-gray-500 text-sm">Pesan otomatis akan terkirim ke admin kami.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center text-2xl font-bold mb-6 rotate-3 shadow-sm">03</div>
+                    <h4 class="font-bold text-xl mb-2 text-green-900">Seger Di Tangan!</h4>
+                    <p class="text-gray-500 text-sm">Ambil di gerai atau tunggu diantarkan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 bg-green-50/30 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-green-600 font-bold tracking-widest uppercase text-xs mb-2">Our Signature Brews</p>
+                <h2 class="text-4xl font-bold text-green-950 brand-font">Menu Seger Tetangga</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Teh Stroberi -->
+                <div class="menu-card bg-white p-8 rounded-[2.5rem] text-center shadow-sm">
+                    <div class="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">🍓</div>
+                    <h3 class="text-xl font-bold text-green-950 mb-2">Teh Stroberi</h3>
+                    <p class="text-gray-400 text-sm mb-6 font-medium italic">Manis asam stroberi yang bikin mood naik!</p>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <span class="text-2xl font-black text-red-500">Rp 8.000</span>
+                        <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20mau%20order%20Teh%20Stroberi%20dong!" target="_blank" class="bg-green-600 text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition">Pesan Menu Ini</a>
+                    </div>
+                </div>
+
+                <!-- Teh Mint -->
+                <div class="menu-card bg-white p-8 rounded-[2.5rem] text-center shadow-sm">
+                    <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">🌿</div>
+                    <h3 class="text-xl font-bold text-green-950 mb-2">Teh Mint Seger</h3>
+                    <p class="text-gray-400 text-sm mb-6 font-medium italic">Sensasi dingin alami, langsung plong!</p>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <span class="text-2xl font-black text-green-600">Rp 8.000</span>
+                        <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20mau%20order%20Teh%20Mint%20Seger%20dong!" target="_blank" class="bg-green-600 text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition">Pesan Menu Ini</a>
+                    </div>
+                </div>
+
+                <!-- Teh Persik -->
+                <div class="menu-card bg-white p-8 rounded-[2.5rem] text-center shadow-sm">
+                    <div class="w-24 h-24 bg-orange-50 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">🍑</div>
+                    <h3 class="text-xl font-bold text-green-950 mb-2">Teh Persik</h3>
+                    <p class="text-gray-400 text-sm mb-6 font-medium italic">Aroma lembut buah persik yang menenangkan.</p>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <span class="text-2xl font-black text-orange-500">Rp 6.000</span>
+                        <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20mau%20order%20Teh%20Persik%20dong!" target="_blank" class="bg-green-600 text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition">Pesan Menu Ini</a>
+                    </div>
+                </div>
+
+                <!-- Teh Leci -->
+                <div class="menu-card bg-white p-8 rounded-[2.5rem] text-center shadow-sm">
+                    <div class="w-24 h-24 bg-purple-50 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">🧋</div>
+                    <h3 class="text-xl font-bold text-green-950 mb-2">Teh Leci</h3>
+                    <p class="text-gray-400 text-sm mb-6 font-medium italic">Manis buah leci, teman ngobrol paling pas.</p>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <span class="text-2xl font-black text-purple-600">Rp 6.000</span>
+                        <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20mau%20order%20Teh%20Leci%20dong!" target="_blank" class="bg-green-600 text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition">Pesan Menu Ini</a>
+                    </div>
+                </div>
+
+                <!-- Teh Lemon -->
+                <div class="menu-card bg-white p-8 rounded-[2.5rem] text-center shadow-sm">
+                    <div class="w-24 h-24 bg-yellow-50 rounded-full flex items-center justify-center text-5xl mx-auto mb-6">🍋</div>
+                    <h3 class="text-xl font-bold text-green-950 mb-2">Teh Lemon</h3>
+                    <p class="text-gray-400 text-sm mb-6 font-medium italic">Asam segar lemon asli, bangkitkan mood!</p>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <span class="text-2xl font-black text-yellow-600">Rp 6.000</span>
+                        <a href="https://wa.me/6289514648404?text=Halo%20Teh%20Tetangga%2C%20mau%20order%20Teh%20Lemon%20dong!" target="_blank" class="bg-green-600 text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition">Pesan Menu Ini</a>
+                    </div>
+                </div>
+
+                <!-- Custom Order -->
+                <div class="menu-card tea-gradient p-8 rounded-[2.5rem] text-center text-white flex flex-col justify-center items-center shadow-lg">
+                    <i class="fas fa-truck-fast text-4xl mb-6 text-yellow-400"></i>
+                    <h3 class="text-xl font-bold mb-4">Pesanan Banyak?</h3>
+                    <p class="text-green-100 text-sm mb-8">Tersedia layanan pesan antar untuk acara khusus Anda!</p>
+                    <a href="https://wa.me/6289514648404?text=Halo%20amnesfubbia%2C%20saya%20ingin%20tanya%20pesanan%20dalam%20jumlah%20banyak." target="_blank" class="bg-white text-green-800 px-6 py-2 rounded-xl font-bold text-sm hover:scale-105 transition">Chat Admin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasi -->
+    <section id="about" class="py-32 px-6 bg-white">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold text-green-950 mb-10 brand-font">Mampir Ke Sini Yuk!</h2>
+                <div class="space-y-10">
+                    <div class="flex gap-6 items-start">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-map-marker-alt text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-xl text-green-900">Alamat Gerai</h4>
+                            <p class="text-gray-500 text-lg leading-relaxed">Jl. Amir Machmud III No.10A<br>Surabaya Timur, 60294</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm"><i class="fas fa-clock text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-xl text-green-900">Waktu Operasional</h4>
+                            <p class="text-gray-500 text-lg leading-relaxed">Setiap Hari: 10.00 - 21.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <a href="https://maps.google.com/?q=Jl.+Amir+Machmud+III+No.10A+Surabaya" target="_blank" class="block bg-gray-50 rounded-[4rem] border-4 border-white shadow-2xl overflow-hidden group relative">
+                    <div class="p-24 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-location-arrow text-3xl"></i></div>
+                        <p class="text-green-900 font-bold text-xl mb-2">Buka Google Maps</p>
+                        <p class="text-gray-400 text-sm italic">Ketuk untuk petunjuk arah</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-950 text-white py-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-3 mb-6">
+                <i class="fas fa-leaf text-green-400 text-3xl"></i>
+                <span class="text-3xl font-bold brand-font">Teh Tetangga</span>
+            </div>
+            <p class="text-green-300 italic mb-12 text-xl">"Segarnya gak jauh, cuma sebelah rumah"</p>
+            
+            <div class="flex justify-center gap-10 mb-16">
+                <a href="https://instagram.com/amnesfubbia" target="_blank" class="text-3xl hover:text-pink-400 transition transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6289514648404" target="_blank" class="text-3xl hover:text-green-400 transition transform hover:scale-110"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <div class="pt-10 border-t border-green-900 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-green-600 text-xs font-bold uppercase tracking-widest">amnesfubbia brand &copy; 2024</p>
+                <div class="flex gap-4">
+                    <p class="text-white/40 text-xs italic">Dibuat dengan rasa syukur.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+

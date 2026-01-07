@@ -3,111 +3,468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi Teh Tetangga</title>
+    <title>Teh Tetangga - Segarnya Gak Jauh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sacramento: #043927;
-            --hunter: #3F704D;
-            --jungle: #29AB87;
-            --pine: #01796F;
-            --white: #ffffff;
-            --soft-bg: #f4f7f5;
+            --green-soft: #f0f7f4;
+            --green-medium: #a3d9a5;
+            --green-dark: #5a8f5c;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--soft-bg);
-            color: var(--sacramento);
+            font-family: 'Plus+Jakarta+Sans', sans-serif;
+            background-color: var(--green-soft);
+            color: #2d3436;
         }
-
-        header {
-            background-color: var(--sacramento);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-
-        .hero {
-            background-color: var(--hunter);
-            color: var(--white);
-            padding: 60px 5%;
-            text-align: center;
+        .floating-badge {
+            animation: bounce 2s infinite;
         }
-
-        .btn-utama {
-            background-color: var(--jungle);
-            color: var(--sacramento);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-
-        .menu-section {
-            padding: 40px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .testimonial-container {
+            overflow: hidden;
+            position: relative;
         }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid var(--pine);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
         }
-
-        .card h3 { color: var(--pine); margin-top: 0; }
-
-        footer {
-            background: var(--sacramento);
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <header>
-        <div style="font-weight: bold; font-size: 1.2rem;">Teh Tetangga</div>
-        <div style="font-size: 0.9rem;">Pencarian | Keranjang</div>
-    </header>
+    <!-- Top Promo Banner -->
+    <div class="bg-[#5a8f5c] text-white py-2 px-4 text-center text-sm font-semibold">
+        🎉 Promo Hari Ini: Beli 3 Gratis 1 untuk menu "Favorit Tetangga"!
+    </div>
 
-    <section class="hero">
-        <h1>Kesegaran Alami di Setiap Gelas</h1>
-        <p>Nikmati perpaduan teh kualitas premium dengan nuansa alam yang menenangkan.</p>
-        <a href="#" class="btn-utama">Lihat Menu Sekarang</a>
-    </section>
+    <!-- Floating Price Badge -->
+    <div class="fixed top-20 right-4 z-50 floating-badge bg-yellow-400 text-green-900 font-bold p-3 rounded-full shadow-lg border-2 border-white text-xs text-center leading-tight">
+        Mulai<br>6rb
+    </div>
 
-    <section class="menu-section">
-        <div class="card">
-            <h3>Menu Favorit</h3>
-            <p>Pilih berbagai varian teh terbaik kami dengan harga terjangkau.</p>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur shadow-sm px-6 py-4 flex justify-between items-center">
+        <div class="flex flex-col">
+            <h1 class="text-xl font-bold text-green-800">Teh Tetangga</h1>
+            <p class="text-[10px] text-green-600 uppercase tracking-widest font-bold">By Amnesfubbia Brand</p>
         </div>
-        <div class="card">
-            <h3>Lokasi Kami</h3>
-            <p>Temukan kedai Teh Tetangga terdekat di kota Anda.</p>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleCart()" class="relative p-2 text-green-700">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+            </button>
+            <button onclick="toggleSidebar()" class="md:hidden text-green-700"><i class="fas fa-bars"></i></button>
         </div>
-        <div class="card">
-            <h3>Testimoni</h3>
-            <p>"Rasanya pas, tidak terlalu manis, dan sangat menyegarkan!"</p>
-        </div>
-    </section>
+    </nav>
 
-    <footer>
-        &copy; 2026 Teh Tetangga - Solusi Haus Kamu.
+    <main class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar (Kiri di Desktop) -->
+        <aside id="sidebar" class="hidden md:block w-full md:w-1/4 space-y-6">
+            <!-- Promo Widget -->
+            <div class="bg-green-100 p-4 rounded-2xl border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-bullhorn mr-2"></i>Promo Sidebar</h3>
+                <div class="text-sm text-green-700 bg-white p-3 rounded-xl shadow-sm">
+                    Diskon 20% bagi tetangga yang membawa botol minum sendiri! 🌿
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative">
+                <input type="text" id="menuSearch" onkeyup="searchMenu()" placeholder="Cari menu favorit..." class="w-full p-3 pl-10 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-500">
+                <i class="fas fa-search absolute left-3 top-4 text-green-400"></i>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="space-y-2">
+                <h3 class="font-semibold text-green-800">Kategori</h3>
+                <button class="w-full text-left p-2 rounded-lg bg-green-600 text-white text-sm">🍹 Minuman Buah Segar</button>
+            </div>
+
+            <!-- Info Toko -->
+            <div class="p-4 bg-white rounded-2xl text-sm shadow-sm border border-green-100">
+                <p class="font-bold mb-1">Operasional:</p>
+                <p>Setiap Hari: 10.00 - 21.00</p>
+            </div>
+        </aside>
+
+        <!-- Main Content (Kanan) -->
+        <div class="w-full md:w-3/4 space-y-12">
+            
+            <!-- Hero -->
+            <section class="text-center space-y-4">
+                <h2 class="text-3xl md:text-5xl font-bold text-green-800 italic">"Segarnya gak jauh, cuma sebelah rumah"</h2>
+                <p class="text-green-600 font-medium">100% Gula Asli • Tanpa Pemanis Buatan • Kesegaran Alami</p>
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=1000" alt="Es Teh Segar" class="w-full h-64 object-cover rounded-3xl shadow-xl">
+            </section>
+
+            <!-- Menu Grid -->
+            <section>
+                <div class="flex justify-between items-end mb-6">
+                    <h3 class="text-2xl font-bold text-green-800">Daftar Menu</h3>
+                    <span class="text-sm bg-green-200 text-green-800 px-3 py-1 rounded-full">Tetangga Punya Cerita</span>
+                </div>
+                
+                <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Menu Item 1 -->
+                    <div class="menu-item bg-red-50 p-4 rounded-2xl border-l-8 border-red-400 flex justify-between items-center shadow-sm hover:shadow-md transition" data-name="teh stroberi">
+                        <div class="flex gap-4 items-center">
+                            <span class="text-3xl">🍓</span>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-red-900 text-lg">Teh Stroberi</h4>
+                                    <span class="text-[10px] bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded font-bold uppercase">Favorit Tetangga</span>
+                                </div>
+                                <p class="text-red-700 font-semibold">Rp 8.000</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Teh Stroberi', 8000)" class="bg-red-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500"><i class="fas fa-plus"></i></button>
+                    </div>
+
+                    <!-- Menu Item 2 -->
+                    <div class="menu-item bg-green-50 p-4 rounded-2xl border-l-8 border-green-400 flex justify-between items-center shadow-sm hover:shadow-md transition" data-name="teh mint">
+                        <div class="flex gap-4 items-center">
+                            <span class="text-3xl">🌿</span>
+                            <div>
+                                <h4 class="font-bold text-green-900 text-lg">Teh Mint Seger</h4>
+                                <p class="text-green-700 font-semibold">Rp 8.000</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Teh Mint Seger', 8000)" class="bg-green-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-500"><i class="fas fa-plus"></i></button>
+                    </div>
+
+                    <!-- Menu Item 3 -->
+                    <div class="menu-item bg-orange-50 p-4 rounded-2xl border-l-8 border-orange-400 flex justify-between items-center shadow-sm hover:shadow-md transition" data-name="teh persik">
+                        <div class="flex gap-4 items-center">
+                            <span class="text-3xl">🍑</span>
+                            <div>
+                                <h4 class="font-bold text-orange-900 text-lg">Teh Persik</h4>
+                                <p class="text-orange-700 font-semibold">Rp 6.000</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Teh Persik', 6000)" class="bg-orange-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500"><i class="fas fa-plus"></i></button>
+                    </div>
+
+                    <!-- Menu Item 4 -->
+                    <div class="menu-item bg-purple-50 p-4 rounded-2xl border-l-8 border-purple-400 flex justify-between items-center shadow-sm hover:shadow-md transition" data-name="teh leci">
+                        <div class="flex gap-4 items-center">
+                            <span class="text-3xl">🧋</span>
+                            <div>
+                                <h4 class="font-bold text-purple-900 text-lg">Teh Leci</h4>
+                                <p class="text-purple-700 font-semibold">Rp 6.000</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Teh Leci', 6000)" class="bg-purple-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-500"><i class="fas fa-plus"></i></button>
+                    </div>
+
+                    <!-- Menu Item 5 -->
+                    <div class="menu-item bg-yellow-50 p-4 rounded-2xl border-l-8 border-yellow-400 flex justify-between items-center shadow-sm hover:shadow-md transition" data-name="teh lemon">
+                        <div class="flex gap-4 items-center">
+                            <span class="text-3xl">🍋</span>
+                            <div>
+                                <h4 class="font-bold text-yellow-900 text-lg">Teh Lemon</h4>
+                                <p class="text-yellow-700 font-semibold">Rp 6.000</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Teh Lemon', 6000)" class="bg-yellow-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-yellow-500"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Steps -->
+            <section class="bg-white p-8 rounded-3xl border border-green-100">
+                <h3 class="text-xl font-bold text-green-800 mb-6 text-center">Cara Order di Teh Tetangga</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="space-y-2">
+                        <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto font-bold text-xl">1</div>
+                        <p class="font-semibold">Pilih Menu</p>
+                        <p class="text-xs text-gray-500">Pilih rasa buah favoritmu yang segar.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto font-bold text-xl">2</div>
+                        <p class="font-semibold">Klik Keranjang</p>
+                        <p class="text-xs text-gray-500">Cek pesananmu lalu klik tombol pesan WA.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto font-bold text-xl">3</div>
+                        <p class="font-semibold">Ambil/Kirim</p>
+                        <p class="text-xs text-gray-500">Minuman siap dinikmati tetangga!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cerita Brand -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-green-800 text-white rounded-3xl overflow-hidden p-8 md:p-0">
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1594631252845-29fc4586c55c?auto=format&fit=crop&q=80&w=800" alt="Proses Teh" class="h-full w-full object-cover opacity-80">
+                </div>
+                <div class="p-4 md:p-12 space-y-4">
+                    <h3 class="text-2xl font-bold">Kenapa Amnesfubbia Jualan Es Teh?</h3>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Amnesfubbia percaya bahwa kebahagiaan paling sederhana adalah tegukan es teh dingin di tengah teriknya hari. Kami ingin menjadi "Tetangga Baik" yang selalu menyediakan kesegaran nyata dengan 100% gula asli dan buah pilihan, karena tetangga berhak mendapatkan yang terbaik.
+                    </p>
+                    <div class="pt-4">
+                        <span class="px-4 py-2 border border-green-400 rounded-full text-xs">Amnesfubbia Choice</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonial-container bg-white p-8 rounded-3xl shadow-sm text-center">
+                <h3 class="text-lg font-bold text-green-800 mb-6 uppercase tracking-wider">Apa Kata Tetangga Sebelah?</h3>
+                <div id="testimonials">
+                    <div class="testimonial-slide active">
+                        <p class="italic text-gray-600">"Sumpah, Teh Lemonnya beneran pake lemon asli, bukan bubuk. Seger banget!"</p>
+                        <p class="mt-4 font-bold text-green-700">- Kak Siska, Surabaya</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="italic text-gray-600">"Harga 6rb tapi rasanya kayak es teh mahal di mal. Favorit banget yang Persik."</p>
+                        <p class="mt-4 font-bold text-green-700">- Bang Budi, Rungkut</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="italic text-gray-600">"Gak perlu jauh-jauh, tinggal wa aja langsung ready. Tetangga idaman!"</p>
+                        <p class="mt-4 font-bold text-green-700">- Ibu Ratna, Timur</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="italic text-gray-600">"Anak-anak suka banget Teh Stroberinya, manisnya pas karena pake gula asli."</p>
+                        <p class="mt-4 font-bold text-green-700">- Pak RT 03</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="italic text-gray-600">"Teh Mint-nya bikin tenggorokan plong. Cocok buat nemenin kerja sore."</p>
+                        <p class="mt-4 font-bold text-green-700">- Mas Andre, Freelancer</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Franchise Section -->
+            <section class="bg-yellow-50 p-8 rounded-3xl border-2 border-dashed border-yellow-200">
+                <div class="text-center space-y-4">
+                    <h3 class="text-2xl font-bold text-yellow-900">Jadi Mitra Teh Tetangga?</h3>
+                    <p class="text-sm text-yellow-800">Buka outlet kesegaranmu sendiri dan jadilah tetangga paling populer di wilayahmu!</p>
+                    <button class="bg-yellow-600 text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-700 shadow-lg">Info Kemitraan (Franchise)</button>
+                </div>
+            </section>
+
+            <!-- Lokasi & Map -->
+            <section class="space-y-6">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <div class="flex-1 space-y-3">
+                        <h3 class="text-xl font-bold text-green-800">Mampir Ke Rumah Kami</h3>
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-green-50">
+                            <p class="text-gray-700 text-sm">jl amir machmud III No.10A<br>Surabaya Timur, 60294</p>
+                            <button onclick="copyAddress()" class="mt-3 text-xs text-green-600 font-bold uppercase tracking-widest flex items-center gap-2">
+                                <i class="fas fa-copy"></i> Salin Alamat
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full h-48 bg-gray-200 rounded-3xl overflow-hidden relative border-4 border-white shadow-lg">
+                        <!-- Mock Map Container -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-green-50">
+                            <div class="text-center">
+                                <i class="fas fa-map-marker-alt text-red-500 text-3xl mb-2"></i>
+                                <p class="text-[10px] font-bold">MAPS: TEH TETANGGA SURABAYA</p>
+                                <a href="https://maps.google.com" target="_blank" class="text-xs underline text-blue-600">Buka di Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Interactive Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/50 hidden items-end md:items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-t-3xl md:rounded-3xl p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Keranjang Tetangga</h3>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-black"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cart-items" class="space-y-4 max-h-64 overflow-y-auto mb-6">
+                <p class="text-center text-gray-500 py-8">Keranjangmu masih kosong nih...</p>
+            </div>
+            <div class="border-t pt-4 space-y-4">
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Total:</span>
+                    <span id="cart-total">Rp 0</span>
+                </div>
+                <button onclick="checkoutWA()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-green-700">
+                    <i class="fab fa-whatsapp text-xl"></i> Pesan via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-green-100 mt-20 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h4 class="text-2xl font-bold text-green-800">Teh Tetangga</h4>
+                <p class="text-green-600 text-sm">Ceria segarnya, dekat hatinya.</p>
+                <div class="flex gap-4 mt-6 justify-center md:justify-start">
+                    <a href="https://instagram.com/Teh_Tetangga" class="text-pink-600 text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-green-600 text-2xl"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="text-center md:text-right text-xs text-gray-400">
+                <p>&copy; 2024 Teh Tetangga. All Rights Reserved.</p>
+                <p class="mt-1 font-semibold text-green-700">By Amnesfubbia Brand</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Floating WA -->
+    <a href="https://wa.me/6289514648404" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <script>
+        // Cart Logic
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            showNotification(`Berhasil menambah ${name}`);
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const countLabel = document.getElementById('cart-count');
+            const totalLabel = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-8">Keranjangmu masih kosong nih...</p>`;
+                countLabel.innerText = "0";
+                totalLabel.innerText = "Rp 0";
+                return;
+            }
+
+            let total = 0;
+            let totalQty = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += (item.price * item.qty);
+                totalQty += item.qty;
+                return `
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl">
+                        <div>
+                            <p class="font-bold">${item.name}</p>
+                            <p class="text-xs text-gray-500">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">-</button>
+                            <span class="text-sm font-bold">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            countLabel.innerText = totalQty;
+            totalLabel.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        function checkoutWA() {
+            if (cart.length === 0) return alert("Keranjang kosong!");
+            
+            let message = "*Halo Teh Tetangga!*\nSaya mau pesan:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.qty}x)\n`;
+                total += (item.price * item.qty);
+            });
+            message += `\n*Total: Rp ${total.toLocaleString('id-ID')}*\n\nAlamat Kirim: [Isi Alamat]`;
+            
+            const url = `https://wa.me/6289514648404?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Testimonial Auto Slide
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].style.display = 'block';
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000);
+        // Init first slide
+        slides.forEach((s, i) => s.style.display = i === 0 ? 'block' : 'none');
+
+        // Search Logic
+        function searchMenu() {
+            const query = document.getElementById('menuSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.menu-item');
+            
+            items.forEach(item => {
+                const name = item.getAttribute('data-name');
+                if (name.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Copy Address
+        function copyAddress() {
+            const address = "jl amir machmud III No.10A, Surabaya Timur, 60294";
+            const el = document.createElement('textarea');
+            el.value = address;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showNotification("Alamat berhasil disalin!");
+        }
+
+        function showNotification(msg) {
+            const toast = document.createElement('div');
+            toast.className = "fixed top-24 left-1/2 -translate-x-1/2 bg-green-800 text-white px-6 py-3 rounded-full shadow-2xl z-[100] text-sm font-bold animate-bounce";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
+

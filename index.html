@@ -24,7 +24,7 @@
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.15/hls.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.15/hls.min.js"></script>
     <style>
         /* ===== THEME VARIABLES ===== */
         :root {
@@ -3362,7 +3362,7 @@
         let _musicHomeQueues = { reco: [], newrelease: [] };
         function musicRadioRowHTML(t, i, section) {
             return `<div style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;border-bottom:1px solid #161616" onclick="musicPlayHomeRow('${section}',${i})">
-                <img src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:52px;height:52px;border-radius:10px;object-fit:cover;background:#1a1a1a;flex-shrink:0">
+                <img loading="lazy" decoding="async" src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:52px;height:52px;border-radius:10px;object-fit:cover;background:#1a1a1a;flex-shrink:0">
                 <div style="flex:1;overflow:hidden">
                     <div style="display:flex;align-items:center;gap:6px">
                         <i class="fa-solid fa-tower-broadcast" style="font-size:11px;color:#888;flex-shrink:0"></i>
@@ -3890,7 +3890,7 @@
             const isPlaying = _musicCurrentTrack && _musicCurrentTrack.id === t.id;
             return `<div style="display:flex;align-items:center;gap:12px;padding:9px 16px;cursor:pointer;${isPlaying?'background:#111':''}"
                 onclick="musicPlayFromQueue(${idx})">
-                <img src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:46px;height:46px;border-radius:7px;object-fit:cover;flex-shrink:0;background:#1a1a1a">
+                <img loading="lazy" decoding="async" src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:46px;height:46px;border-radius:7px;object-fit:cover;flex-shrink:0;background:#1a1a1a">
                 <div style="flex:1;overflow:hidden">
                     <div style="font-size:13px;font-weight:600;color:${isPlaying?'#fff':'#ccc'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.title}</div>
                     <div style="font-size:11px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.artist}</div>
@@ -4432,7 +4432,7 @@
                     const upNext = _musicQueue.map((t,i) => ({t,i})).filter(x => x.i !== _musicQueueIdx);
                     const rowHTML = (t, i, isCurrent) => `
                         <div style="display:flex;align-items:center;gap:10px;padding:9px 0">
-                            <img onclick="musicPlayFromQueue(${i});musicClosePanel()" src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:42px;height:42px;border-radius:6px;object-fit:cover;background:#1a1a1a;cursor:pointer">
+                            <img loading="lazy" decoding="async" onclick="musicPlayFromQueue(${i});musicClosePanel()" src="${t.artworkSmall}" onerror="musicImgFallback(this)" style="width:42px;height:42px;border-radius:6px;object-fit:cover;background:#1a1a1a;cursor:pointer">
                             <div onclick="musicPlayFromQueue(${i});musicClosePanel()" style="flex:1;overflow:hidden;cursor:pointer">
                                 <div style="font-size:12px;font-weight:600;color:${isCurrent?'#fff':'#ccc'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.title}</div>
                                 <div style="font-size:10px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.artist}</div>
@@ -5520,7 +5520,7 @@
                     <div class="music-card">
                         <div class="flex items-center gap-4">
                             <div class="relative flex-shrink-0 group">
-                                <img src="${song.artworkUrl100}" class="w-14 h-14 rounded-xl shadow-lg brightness-75">
+                                <img loading="lazy" decoding="async" src="${song.artworkUrl100}" class="w-14 h-14 rounded-xl shadow-lg brightness-75">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <i class="fa-solid fa-music text-[10px] text-white/20"></i>
                                 </div>
@@ -6331,7 +6331,10 @@
                     const res = await fetch(url);
                     const data = await res.json();
                     clearTimeout(timer);
-                    try { sessionStorage.setItem(url, JSON.stringify(data)); } catch (e) { _warn('fetchWithCache', e); }
+                    // Hanya cache respons sukses; respons error (404/429/dll) tidak disimpan supaya bisa dicoba ulang
+                    if (res.ok) {
+                        try { sessionStorage.setItem(url, JSON.stringify(data)); } catch (e) { _warn('fetchWithCache', e); }
+                    }
                     resolve(data);
                 } catch(e) {
                     clearTimeout(timer);
@@ -10996,7 +10999,7 @@
                     : `<span style="color:#777">${diff} hari lagi</span>`;
                 return `<div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #161616">
                     <div style="width:44px;height:62px;border-radius:8px;overflow:hidden;background:#161616;flex-shrink:0">
-                        ${r.poster ? `<img src="https://image.tmdb.org/t/p/w92${r.poster}" style="width:100%;height:100%;object-fit:cover">` : ''}
+                        ${r.poster ? `<img loading="lazy" decoding="async" src="https://image.tmdb.org/t/p/w92${r.poster}" style="width:100%;height:100%;object-fit:cover">` : ''}
                     </div>
                     <div style="flex:1;min-width:0">
                         <div style="font-size:13px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.title}</div>

@@ -1881,6 +1881,20 @@
         .server-btn.active-link, .ls-srv-btn.active-link { border-color: var(--accent) !important; background: rgba(0,0,0,0.12); }
         .dot.bg-blue-500 { background: var(--accent) !important; }
         .ep-btn.active-pill { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+    
+        /* ===== TOMBOL IKON SERAGAM =====
+           Semua tombol ikon di header (back, close, menu, cari) memakai ukuran yang sama:
+           ikon 20px, area ketuk 44x44px. Margin negatif menjaga tata letak header tetap
+           seperti semula (jejak layout 32px). Tidak memengaruhi gestur swipe. */
+        .btn-icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            box-sizing: content-box; width: 20px; height: 20px;
+            padding: 12px; margin: -6px; flex-shrink: 0;
+            font-size: 20px; color: #fff; cursor: pointer; border-radius: 50%;
+            transition: background 0.15s;
+            -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+        }
+        .btn-icon:active { background: rgba(255,255,255,0.14); }
     </style>
 </head>
 <body>
@@ -1993,7 +2007,7 @@
     <div id="sideMenu">
         <!-- Sticky top bar -->
         <div class="about-topbar">
-            <i class="fa-solid fa-chevron-left about-close-btn" onclick="toggleSideMenu()"></i>
+            <i class="fa-solid fa-chevron-left about-close-btn btn-icon" onclick="toggleSideMenu()"></i>
             <div class="about-topbar-title">Tentang Aplikasi</div>
             <div style="width:32px"></div>
         </div>
@@ -2234,8 +2248,8 @@
                     <span class="dot-notify"></span>
                 </div>
                 <div class="flex gap-5">
-                    <i class="fa-regular fa-calendar cursor-pointer" style="font-size:22px;color:#fff" onclick="openComingSoon()"></i>
-                    <i class="fa-solid fa-bars cursor-pointer" style="font-size:22px" onclick="toggleSideMenu()"></i>
+                    <i class="fa-regular fa-calendar btn-icon" onclick="openComingSoon()"></i>
+                    <i class="fa-solid fa-bars btn-icon" onclick="toggleSideMenu()"></i>
                 </div>
             </div>
 
@@ -2302,7 +2316,7 @@
 
     <div id="searchOverlay">
         <div class="search-header">
-            <i class="fa-solid fa-arrow-left text-xl text-white" onclick="closeSearch()"></i>
+            <i class="fa-solid fa-arrow-left btn-icon" onclick="closeSearch()"></i>
             <div class="search-input-box">
                 <i class="fa-solid fa-magnifying-glass text-zinc-500 text-xs"></i>
                 <input type="text" id="searchInp" autocomplete="off" placeholder="Search movies, series, or actors..." onkeydown="if(event.key==='Enter') searchAction()" oninput="handleSearchInput(this.value)">
@@ -2346,7 +2360,7 @@
         <div id="decadeModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);overflow-y:auto">
             <div style="max-width:520px;margin:0 auto;padding:20px 16px 60px">
                 <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-                    <i class="fa-solid fa-chevron-left" style="font-size:18px;color:#fff;cursor:pointer;padding:4px 8px 4px 0" onclick="closeDecadeModal()"></i>
+                    <i class="fa-solid fa-chevron-left btn-icon" onclick="closeDecadeModal()"></i>
                     <div style="font-size:17px;font-weight:800;color:#fff">Top Rated by Decade</div>
                 </div>
                 <!-- Decade + type selector -->
@@ -2402,7 +2416,7 @@
     <!-- Modal Movieografi -->
     <div id="movieografiModal">
         <div class="mvg-header">
-            <i class="fa-solid fa-chevron-left" style="font-size:18px;color:#fff;cursor:pointer" onclick="closeMovieografi()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeMovieografi()"></i>
             <div>
                 <div class="mvg-title">Movieografi</div>
                 <div class="mvg-actor-name" id="mvgActorName"></div>
@@ -2437,7 +2451,7 @@
         <div id="modalScrollTop" class="max-w-xl mx-auto pb-20">
             <div class="sticky top-0 bg-black z-[100] border-b border-zinc-900">
                 <div class="px-4 h-[54px] flex items-center">
-                    <i class="fa-solid fa-chevron-left text-xl cursor-pointer" onclick="closeModal()"></i>
+                    <i class="fa-solid fa-chevron-left btn-icon" onclick="closeModal()"></i>
                     <div class="flex-grow text-center text-[14px] font-bold truncate px-8" id="mTitle"></div>
                 </div>
                 
@@ -2591,7 +2605,7 @@
 
         <!-- Sticky top bar -->
         <div class="actor-topbar">
-            <i class="fa-solid fa-chevron-left actor-topbar-icon" onclick="closeActorModal()"></i>
+            <i class="fa-solid fa-chevron-left actor-topbar-icon btn-icon" onclick="closeActorModal()"></i>
             <div class="actor-topbar-title" id="actorHeaderTitle"></div>
             <i class="fa-solid fa-ellipsis actor-topbar-icon"></i>
         </div>
@@ -2667,10 +2681,10 @@
 
     <div id="tvModal">
         <div class="tv-topbar">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="closeTvModal()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeTvModal()"></i>
             <div class="tv-live-dot"></div>
             <div class="tv-topbar-title" id="tvTopbarTitle">Embed</div>
-            <i class="fa-solid fa-magnifying-glass" style="font-size:16px;color:#8e8e8e;cursor:pointer;padding:6px" id="tvSearchIcon" onclick="focusTvSearch()"></i>
+            <i class="fa-solid fa-magnifying-glass btn-icon" style="color:#8e8e8e" id="tvSearchIcon" onclick="focusTvSearch()"></i>
         </div>
 
         <!-- Tab bar — 3 tab -->
@@ -2804,7 +2818,7 @@
     <!-- ===== NOTIFIKASI FILM BARU ===== -->
     <div id="notifModal">
         <div class="notif-topbar">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px;margin-right:4px" onclick="closeNotif()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeNotif()"></i>
             <div class="notif-topbar-title">New Movies Today</div>
             <span class="notif-date-badge" id="notifDateBadge"></span>
         </div>
@@ -2817,7 +2831,7 @@
     <!-- ===== FOTO PEMERAN ===== -->
     <div id="actorPhotosModal">
         <div class="actor-photos-topbar">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="closeActorPhotos()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeActorPhotos()"></i>
             <div class="actor-photos-title" id="actorPhotosTitle">Foto</div>
             <div style="width:32px"></div>
         </div>
@@ -2933,7 +2947,7 @@
                     <div id="musicPlDetailArt" style="position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.55)"></div>
                     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),#000 95%)"></div>
                     <div style="position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between">
-                        <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="musicClosePlaylistDetail()"></i>
+                        <i class="fa-solid fa-chevron-left btn-icon" onclick="musicClosePlaylistDetail()"></i>
                         <i class="fa-solid fa-ellipsis" style="font-size:18px;color:#fff;cursor:pointer;padding:6px"></i>
                     </div>
                 </div>
@@ -2957,7 +2971,7 @@
         <div id="musicAlbumDetail" style="display:none;position:absolute;top:0;left:0;right:0;bottom:62px;z-index:30;background:#000;flex-direction:column;overflow:hidden">
             <div style="flex:1;overflow-y:auto;padding-bottom:160px">
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0">
-                    <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="musicCloseAlbumDetail()"></i>
+                    <i class="fa-solid fa-chevron-left btn-icon" onclick="musicCloseAlbumDetail()"></i>
                     <i id="musicAlbumLikeBtn" class="fa-regular fa-heart" style="font-size:19px;color:#666;cursor:pointer;padding:6px" onclick="musicToggleAlbumLike()"></i>
                 </div>
                 <div style="text-align:center;padding:6px 20px 0">
@@ -2987,7 +3001,7 @@
                     </div>
                     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15),#000 95%)"></div>
                     <div style="position:absolute;top:16px;left:16px">
-                        <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="musicCloseArtistProfile()"></i>
+                        <i class="fa-solid fa-chevron-left btn-icon" onclick="musicCloseArtistProfile()"></i>
                     </div>
                     <div style="position:absolute;bottom:14px;left:20px;right:20px">
                         <div id="musicArtistName" style="font-size:22px;font-weight:900;color:#fff"></div>
@@ -3014,7 +3028,7 @@
         <div id="musicEqScreen" style="display:none;position:absolute;top:0;left:0;right:0;bottom:62px;z-index:30;background:#000;flex-direction:column;overflow:hidden">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 4px;flex-shrink:0">
                 <div style="display:flex;align-items:center;gap:14px">
-                    <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="musicCloseEqScreen()"></i>
+                    <i class="fa-solid fa-chevron-left btn-icon" onclick="musicCloseEqScreen()"></i>
                     <span style="font-size:20px;font-weight:800;color:#fff">Equalizer</span>
                 </div>
                 <label style="position:relative;display:inline-block;width:44px;height:26px">
@@ -3063,7 +3077,7 @@
             <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:0 0 10px">
                 <!-- Top bar -->
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px 0">
-                    <i class="fa-solid fa-chevron-down" style="font-size:20px;color:#fff;cursor:pointer;padding:6px" onclick="musicCloseFullPlayer()"></i>
+                    <i class="fa-solid fa-chevron-down btn-icon" onclick="musicCloseFullPlayer()"></i>
                     <div style="text-align:center">
                         <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.5px">PLAYING FROM</div>
                         <div style="font-size:12px;font-weight:700;color:#fff;margin-top:2px" id="musicFullContext">Your Library</div>
@@ -3147,7 +3161,7 @@
     <audio id="musicAudioEl" preload="metadata"></audio>
     <div id="livesportModal" style="display:none;position:fixed;inset:0;z-index:9700;background:#0a0a0a;flex-direction:column">
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#000;position:sticky;top:0;z-index:10">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer" onclick="closeLivesportModal()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeLivesportModal()"></i>
             <span style="font-size:17px;font-weight:800;color:#fff" id="livesportTitle">Live Sport</span>
         </div>
         <iframe id="livesportIframe" src="" style="flex:1;width:100%;border:none;display:block" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -11084,7 +11098,7 @@
     <!-- ===== PUSTAKA UNDUHAN ===== -->
     <div id="downloadLibModal" style="display:none;position:fixed;inset:0;z-index:9950;background:#000;flex-direction:column">
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#000;border-bottom:1px solid #161616;flex-shrink:0">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer" onclick="closeDownloadLib()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeDownloadLib()"></i>
             <span style="font-size:17px;font-weight:800;color:#fff">Pustaka Unduhan</span>
             <span style="flex:1"></span>
             <i class="fa-solid fa-trash-can" style="color:#555;font-size:16px;cursor:pointer" onclick="clearDownloadLib()" title="Hapus semua"></i>
@@ -11095,7 +11109,7 @@
     <!-- ===== PUSAT NOTIFIKASI RILIS ===== -->
     <div id="notifCenterModal" style="display:none;position:fixed;inset:0;z-index:9950;background:#000;flex-direction:column">
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#000;border-bottom:1px solid #161616;flex-shrink:0">
-            <i class="fa-solid fa-chevron-left" style="font-size:20px;color:#fff;cursor:pointer" onclick="closeNotifCenter()"></i>
+            <i class="fa-solid fa-chevron-left btn-icon" onclick="closeNotifCenter()"></i>
             <span style="font-size:17px;font-weight:800;color:#fff">Notifikasi Rilis</span>
             <span style="flex:1"></span>
             <i class="fa-solid fa-trash-can" style="color:#555;font-size:16px;cursor:pointer" onclick="clearReminders()" title="Hapus semua"></i>
